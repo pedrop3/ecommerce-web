@@ -5,7 +5,7 @@
     
     <div fxLayout="row wrap" fxLayoutGap="150px grid">
         <div *ngFor="let product of products">
-            <mat-card class="product-card">
+            <mat-card class="product-card" (click)="addToCart(product)">
     
                 <img mat-card-image src="assets/images/{{product.image_url}}" alt="Aninal images">
                 <mat-card-content>
