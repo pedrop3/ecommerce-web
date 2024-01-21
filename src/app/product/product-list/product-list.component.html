@@ -1,13 +1,20 @@
-<div fxLayout="row wrap" fxLayoutGap="150px grid">
-    <div *ngFor="let product of products">
-        <mat-card class="product-card">
-       
-            <img mat-card-image src="assets/images/{{product.image_url}}" alt="Aninal images">
-            <mat-card-content>
-                <mat-card-title>{{product.name}}</mat-card-title>
-                <mat-card-subtitle>{{product.price | currency: 'EUR'}}</mat-card-subtitle>
-            </mat-card-content>
-           
-        </mat-card>
+<div class="container">
+    <div>
+        <h2>Our latest colletions</h2>
+    </div>
+    
+    <div fxLayout="row wrap" fxLayoutGap="150px grid">
+        <div *ngFor="let product of products">
+            <mat-card class="product-card">
+    
+                <img mat-card-image src="assets/images/{{product.image_url}}" alt="Aninal images">
+                <mat-card-content>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>{{product.price | currency: 'EUR'}}</mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>
+
+
