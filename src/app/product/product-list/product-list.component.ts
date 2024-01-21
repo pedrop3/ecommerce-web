@@ -4,6 +4,8 @@ import { ProductService } from '../product.service';
 import { catchError, map, tap } from 'rxjs';
 import { CartService } from 'src/app/cart/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SortingStrategyFactory } from '../strategy-product-order/sorting.strategy.factory';
+import { ProductSorter } from '../strategy-product-order/product.sorter';
 
 @Component({
   selector: 'app-product-list',
@@ -15,6 +17,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  sortOrder: string = "";
 
   constructor(private productService: ProductService,
     private cartService: CartService,
@@ -64,6 +67,20 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = this.products.filter(
       product => product.name.toLowerCase().includes(searchTerm)
     )
+
+    this.sortProducts(this.sortOrder)
+
+  }
+
+  public sortProducts(sortValue: string) {
+
+    this.sortOrder = sortValue;
+
+    const strategyFactory = new SortingStrategyFactory();
+    const strategy = strategyFactory.createStrategy(sortValue);
+
+    const productSort = new ProductSorter(strategy);
+    this.filteredProducts = productSort.sort(this.filteredProducts)
 
   }
 

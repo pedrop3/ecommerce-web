@@ -18,7 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class ProductModule { }
