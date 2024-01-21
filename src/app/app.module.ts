@@ -7,6 +7,7 @@ import { ProductModule } from './product/product.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MenuModule } from './menu/menu.module';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MenuModule } from './menu/menu.module';
     HttpClientModule,
     ProductModule,
     BrowserAnimationsModule,
-    MenuModule
+    MenuModule,
+    CartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
