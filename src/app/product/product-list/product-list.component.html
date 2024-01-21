@@ -2,9 +2,13 @@
     <div>
         <h2>Our latest colletions</h2>
     </div>
+
+    <mat-form-field>
+        <input matInput (keyup)="filter($event)" placeholder="Search...">
+    </mat-form-field>
     
     <div fxLayout="row wrap" fxLayoutGap="150px grid">
-        <div *ngFor="let product of products">
+        <div *ngFor="let product of filteredProducts">
             <mat-card class="product-card" (click)="addToCart(product)">
     
                 <img mat-card-image src="assets/images/{{product.image_url}}" alt="Aninal images">

@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit {
 
 
   products: Product[] = [];
+  filteredProducts: Product[] = [];
 
   constructor(private productService: ProductService,
     private cartService: CartService,
@@ -26,6 +27,7 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts().pipe(
       map((products: Product[]) => {
         this.products = products;
+        this.filteredProducts = products;
       })
     ).subscribe();
 
@@ -33,8 +35,6 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-
-
     this.cartService.addToCart(product).pipe(
       tap(() => {
         this.sncakBar.open("Add to cart", "", {
@@ -53,6 +53,18 @@ export class ProductListComponent implements OnInit {
         return err;
       })
     ).subscribe();
+  }
+
+
+  filter(event: Event): void {
+    let searchTerm = (event.target as HTMLInputElement).value;
+
+    searchTerm = searchTerm.toLowerCase();
+
+    this.filteredProducts = this.products.filter(
+      product => product.name.toLowerCase().includes(searchTerm)
+    )
+
   }
 
 }
